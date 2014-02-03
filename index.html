@@ -8,7 +8,7 @@
 		The Reflect object is created with 'adder.js' as the parameter. It loads that file via ajax, introspects the file and injects a property called _privates. This object contains all of the private functions from the original file. </br></br>
 		`Reflect.injected` is essentially a new alias for `adder`, but with the addition of the `_private` object, which maps to the private functions.
 		<ul>
-			<li>With `adder`, you may try adder.do(1, 3) in the console.</li>
+			<li>With `adder`, you may try `adder.do(1, 3)` in the console.</li>
 			<li>With the `Reflect.injected` object, you may access the private functions via `Reflect.injected._privates`, and thus access the private function `doAdd` with `Reflect.injected._privates.doAdd(1, 3)`</li>
 		</ul>
 		</br>
