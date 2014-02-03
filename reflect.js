@@ -12,7 +12,7 @@ var Reflect = function(file) {
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
 
 		var funcString = "new ("
-			+ objectAsString.substring(0, objectAsString.length - 1)
+			+ file.substring(0, file.length - 1)
 			+ ";"
 			+ "this._privates = {};\n"
 			+ "this._initPrivates = function(pf) {"
