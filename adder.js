@@ -1,4 +1,4 @@
-var adderMod = (function() {
+var adder = (function() {
 	// private function doAdd
 	function doAdd(num1, num2) {
 		return num1 + num2;
