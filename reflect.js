@@ -7,7 +7,7 @@ var Reflect = function(file) {
 		Reflect.injected = inject(this.response)
 	}
 
-	function inject() {
+	function inject(file) {
 		file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
 
 		// parse out the function signature
