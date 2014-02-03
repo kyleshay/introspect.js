@@ -4,7 +4,6 @@ var Reflect = function(file) {
 
 		//parse out the function signature
 		var privs = file.match(/((var )?\s*?(\w.*?)=\s*?)?function(\s*?(\w.*?))?\(/g),
-
 			replace = "return Public;", //this should be passed in as a param
 			instance = eval("new (" + file.replace(replace, ''
 			+ "Public._initPrivs = function(funcs){"
