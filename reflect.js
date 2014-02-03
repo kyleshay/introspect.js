@@ -4,7 +4,7 @@ var Reflect = function(file) {
 	request.send()
 
 	request.onload = function() {
-		return inject(this.response.toString())
+		return inject(this.response.toString().replace(/var .* =/, ''))
 	}
 
 	function inject(file) {
@@ -16,7 +16,7 @@ var Reflect = function(file) {
 		console.log('something? ', aPrivateFunctions)
 
 		var funcString = "new ("
-			+ file.substring(0, file.length - 1)
+			+ file.substring(0, file.lastIndexOf('}'))
 			+ ";"
 			+ "this._privates = {};\n"
 			+ "this._initPrivates = function(pf) {"
