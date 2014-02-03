@@ -1,7 +1,8 @@
 var introspect = function (file) {
+    'use strict';
     function inject(file) {
         file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
-        var privs = file.match(/((var )?\s*?(\w.*?)=\s*?)?function(\s*?(\w.*?))?\(/g), //get func
+        var privs = file.match(/((var )?\s*?([\w\s]*?)=\s*?)?function[\w\s]*?\(/g), //get func
             replace = "return Public;", //this should be passed in as a param
             instance = eval("new (" + file.replace(replace, "Public._initPrivs = function(funcs){"
                 + "Public._privates = {};" //init _privates property
@@ -10,7 +11,7 @@ var introspect = function (file) {
                 + "if(fn.length == 0) continue;" //skip the empty string funcs
                 + "try{Public._privates[fn] = eval(fn);}catch(e){" // test to see if func is defined
                 + "if(e.name=='ReferenceError'){continue;}else{throw e;}}}}\n" //if not, ignore
-                + replace) //add the thing we replaced back in. a better option would be use .slice
+                + replace) //add the thing we replaced back in at the end
                 + "})()"); //eval(new(function(){})()) turn it into a func we can call
         instance._initPrivs(privs); //call the initPrivs function to load the _privates property
         delete instance._initPrivs; //delete the initiation function
