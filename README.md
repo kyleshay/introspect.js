@@ -1,7 +1,7 @@
 introspect.js
 =============
 
-Introspect and inject a property that is an object containing private functions. Could be useful for unit testing private functions.
+Introspect (Reflection via source code) and inject a property that is an object containing private functions. Could be useful for unit testing private functions.
 
 ## To use (example):
 `introspect('adder.js')`
