@@ -1,11 +1,9 @@
 var introspect = function (file) {
-    'use strict';
     function inject(file) {
         file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
-        var privs = file.match(/((var )?\s*?(\w\.*?)=\s*?)?function(\s*?(\w\.*?))?\(/g), //get func
+        var privs = file.match(/((var )?\s*?(\w.*?)=\s*?)?function(\s*?(\w.*?))?\(/g), //get func
             replace = "return Public;", //this should be passed in as a param
-            instance = eval("new (" + file.replace(replace, ' '
-                + "Public._initPrivs = function(funcs){"
+            instance = eval("new (" + file.replace(replace, "Public._initPrivs = function(funcs){"
                 + "Public._privates = {};" //init _privates property
                 + "for(var i=funcs.length;i--;){" //loop the funcs found from `privs`
                 + "var fn=funcs[i].replace(/function|=|\\s.*?|\\(|var /g,'');" //remove tokens
