@@ -13,7 +13,7 @@ var Reflect = function(file) {
 		// parse out the function signature
 		var privs = file.match(/((var )?\s*?(\w.*?)=\s*?)?function(\s*?(\w.*?))?\(/g);
 
-		var replace = "return Public;";
+		var replace = "return Public;"; // this should be passed in as a param
 		var instance = eval("new (" + file.replace(replace, ''
 			+ "Public._initPrivs = function(funcs){"
 			+ "Public._privates = {};" // init _privates property
@@ -23,13 +23,13 @@ var Reflect = function(file) {
 			+ "if(fn.length == 0) continue;" // skip the empty string funcs
 			+ "try{Public._privates[fn] = eval(fn);}catch(e){" // test to see if func is defined
 			+ "if(e.name=='ReferenceError'){continue;}else{throw e;}}}}\n" // if not, ignore
-			+ replace)
+			+ replace) // add the thing we replaced back in. a better option would be use .slice
 			+ "})()"); // eval(new(function(){})()) turn it into a func we can call
 		
 		// call the initPrivs function to load the _privates property
 		instance._initPrivs(privs);
 
-		// delete the initiation functions
+		// delete the initiation function
 		delete instance._initPrivs;
 
 		return instance;
