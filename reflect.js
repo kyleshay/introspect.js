@@ -8,6 +8,8 @@ var Reflect = function(file) {
 	}
 
 	function inject(file) {
+		console.log(file)
+
 		// parse out the function signature
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
 
@@ -30,6 +32,7 @@ var Reflect = function(file) {
 			+ "}"
 			+ "\n\n})()";
 
+		
 		var instance = eval(funcString);
 		instance._initPrivates(aPrivateFunctions);
 
