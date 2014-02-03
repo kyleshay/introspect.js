@@ -8,10 +8,11 @@ var Reflect = function(file) {
 	}
 
 	function inject(file) {
-		console.log(file)
+		console.log('something? ', file)
 
 		// parse out the function signature
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
+		console.log('something? ', aPrivateFunctions)
 
 		var funcString = "new ("
 			+ file.substring(0, file.length - 1)
@@ -31,6 +32,7 @@ var Reflect = function(file) {
 			+ "  }"
 			+ "}"
 			+ "\n\n})()";
+		console.log('something? ', funcString)
 
 		
 		var instance = eval(funcString);
