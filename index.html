@@ -2,14 +2,20 @@
 	<head>
 		<script type="text/javascript" src="adder.js"></script>
 		<script type="text/javascript" src="reflect.js"></script>
+		<style>body{font: 15px sans-serif} .code {
+			font: 12px monospace;
+			border: 1px solid #ddd;
+			padding: 1px;
+			color: darkgreen
+		}</style>
 	</head>
 	<body>
-		<h3>View source and in the console inspect the object `adder` and the `Reflect.injected` object</h3>
-		The Reflect object is created with 'adder.js' as the parameter. It loads that file via ajax, introspects the file and injects a property called _privates. This object contains all of the private functions from the original file. </br></br>
-		`Reflect.injected` is essentially a new alias for `adder`, but with the addition of the `_private` object, which maps to the private functions.
+		<h3>In the console inspect the <span class="code">adder</span> and <span class="code">Reflect.injected</span> object</h3>
+		The <span class="code">Reflect</span> object is created with <span class="code">adder.js</span> as the parameter. It loads that file via ajax, introspects the file and injects a property called <span class="code">_privates</span>. This object contains all of the private functions from the original file. </br></br>
+		<span class="code">Reflect.injected</span> is essentially a new alias for <span class="code">adder</span>, but with the addition of the <span class="code">_private</span> object, which maps to the private functions.
 		<ul>
-			<li>With `adder`, you may try adder.do(1, 3) in the console.</li>
-			<li>With the `Reflect.injected` object, you may access the private functions via `Reflect.injected._privates`, and thus access the private function `doAdd` with `Reflect.injected._privates.doAdd(1, 3)`</li>
+			<li>With <span class="code">adder</span>, you may try <span class="code">adder.do(1, 3)</span> in the console.</li>
+			<li>With the <span class="code">Reflect.injected</span> object, you may access the private functions via <span class="code">Reflect.injected._privates</span>, and thus access the private function <span class="code">doAdd</span> with <span class="code">Reflect.injected._privates.doAdd(1, 3)</span></li>
 		</ul>
 		</br>
 		<a href='https://github.com/kyleshay/introspect.js'>back to github</a>
