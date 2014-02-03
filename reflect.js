@@ -15,11 +15,11 @@ var Reflect = function(file) {
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
 		console.log('something? ', aPrivateFunctions)
 
-		var funcString = "new " + file.replace('\n', "this._privates = {};"
-			+ "this._initPrivates = function(pf){this._privates = {};"
+		var funcString = "new " + file.replace('\n', "Public._privates = {};"
+			+ "Public._initPrivates = function(pf){Public._privates = {};"
 			+ "for (var i = 0, ii = pf.length; i < ii; i++){"
 			+ "var fn = pf[i].replace(/(function\\s+)/, '').replace('(', '');"
-			+ "try {this._privates[fn] = eval(fn);}catch(e){"
+			+ "try {Public._privates[fn] = eval(fn);}catch(e){"
 			+ "if(e.name == 'ReferenceError') { continue; }"
 			+ "else{throw e;}}}}\n")
 			+ "\n})()";
