@@ -18,7 +18,9 @@ var Reflect = function(file) {
 			+ "Public._initPrivs = function(funcs){"
 			+ "Public._privates = {};" // init _privates property
 			+ "for(var i=funcs.length;i--;){" // loop the funcs found from `privs`
-			+ "var fn=funcs[i].replace(/(=?\\s*?function\\s*?)/,'').replace('(','').replace('var ', '');" // get func name
+			+ "var fn=funcs[i].replace(/(=?\\s*?function\\s*?)/,'')."
+			+ "replace('(','').replace('var ', '').trim();" // get func name
+			+ "if(fn.length == 0) continue;" // skip the empty string funcs
 			+ "try{Public._privates[fn] = eval(fn);}catch(e){" // test to see if func is defined
 			+ "if(e.name=='ReferenceError'){continue;}else{throw e;}}}}\n" // if not, ignore
 			+ replace)
