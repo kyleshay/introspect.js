@@ -4,7 +4,13 @@
 		<script type="text/javascript" src="reflect.js"></script>
 	</head>
 	<body>
-		View source and in the console inspect the object `adder` and `injected`
+		<p>
+			View source and in the console inspect the object `adder` and `injected`
+			With `adder`, you may try adder.do(1, 3) in the console.
+			With `injected`, you may access the private function doAdd via the following:
+				Reflect.injected._privates["doAdd"](1, 3)
+				Reflect.injected._privates.doAdd(1, 3)
+		</p>
 		<script type="text/javascript">
 		reflect = Reflect('adder.js');
 		</script>
