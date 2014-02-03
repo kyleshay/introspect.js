@@ -24,7 +24,7 @@ var Reflect = function(file) {
 		delete instance._initPrivs;
 
 		return instance;
-	};
+	}
 
 	var request = new XMLHttpRequest
 	request.open('GET', file, true)
