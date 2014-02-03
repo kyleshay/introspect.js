@@ -16,8 +16,7 @@ var Reflect = function(file) {
 		console.log('something? ', aPrivateFunctions)
 
 		var funcString = "new ("
-			+ file.substring(0, file.lastIndexOf('}'))
-			+ ";"
+			+ file.substring(0, file.lastIndexOf('}')).splice(file.indexOf('\n'), 0, ";"
 			+ "this._privates = {};\n"
 			+ "this._initPrivates = function(pf) {"
 			+ "  this._privates = {};"
@@ -31,7 +30,7 @@ var Reflect = function(file) {
 			+ "      else { throw e; }"
 			+ "    }"
 			+ "  }"
-			+ "}"
+			+ "}") 
 			+ "\n\n})()";
 		console.log('something? ', funcString)
 
