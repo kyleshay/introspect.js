@@ -8,6 +8,7 @@ var Reflect = function(file) {
 	}
 
 	function inject(file) {
+		Reflect.file = file;
 		console.log('something? ', file)
 
 		// parse out the function signature
