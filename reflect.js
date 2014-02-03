@@ -4,11 +4,11 @@ var Reflect = function(file) {
 	request.send()
 
 	request.onload = function() {
-		Reflect.injected = inject(this.response.toString().replace(/var .* =/, ''))
+		return inject(this.response)
 	}
 
-	function inject(file) {
-		Reflect.file = file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
+	function inject() {
+		file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
 
 		// parse out the function signature
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
