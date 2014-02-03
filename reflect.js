@@ -4,7 +4,7 @@ var Reflect = function(file) {
 	request.send()
 
 	request.onload = function() {
-		return inject(this.response)
+		Reflect.injected = inject(this.response)
 	}
 
 	function inject() {
