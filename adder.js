@@ -4,6 +4,7 @@ var adder = (function() {
 		return num1 + num2;
 	}
 	
+	// private functions foo and bar declared a different way
 	var foo = function() {
 		return "foo";
 	}, bar = function() {
