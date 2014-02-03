@@ -14,19 +14,21 @@ var Reflect = function(file) {
 		var privs = file.match(/function\s*?(\w.*?)\(/g);
 
 		var replace = "return Public;";
-		var instance = eval("new (" + file.replace(replace, "Public._privates = {};"
-			+ "Public._initPrivates = function(pf){Public._privates = {};"
-			+ "for (var i = 0, ii = pf.length; i < ii; i++){"
-			+ "var fn = pf[i].replace(/(function\\s+)/, '').replace('(', '');"
-			+ "try {Public._privates[fn] = eval(fn);}catch(e){"
-			+ "if(e.name == 'ReferenceError') { continue; }"
-			+ "else{throw e;}}}}\n" + replace)
-			+ "})()");
+		var instance = eval("new (" + file.replace(replace, ''
+			+ "Public._initPrivs = function(funcs){"
+			+ "Public._privates = {};" // init _privates property
+			+ "for(var i=funcs.length;i--;){" // loop the funcs found from `privs`
+			+ "var fn=funcs[i].replace(/(function\\s+)/,'').replace('(','');" // get func name
+			+ "try{Public._privates[fn] = eval(fn);}catch(e){" // test to see if func is defined
+			+ "if(e.name=='ReferenceError'){continue;}else{throw e;}}}}\n" // if not, ignore
+			+ replace)
+			+ "})()"); // eval(new(function(){})()) turn it into a func we can call
 		
-		instance._initPrivates(privs);
+		// call the initPrivs function to load the _privates property
+		instance._initPrivs(privs);
 
 		// delete the initiation functions
-		delete instance._initPrivates;
+		delete instance._initPrivs;
 
 		return instance;
 	}
