@@ -1,4 +1,4 @@
-var Reflect = function (file) {
+var introspect = function (file) {
         'use strict';
         function inject(file) {
             file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
@@ -24,6 +24,6 @@ var Reflect = function (file) {
         request.send();
 
         request.onload = function () {
-            Reflect.injected = inject(this.response);
+            introspect.injected = inject(this.response);
         };
     };
