@@ -1,5 +1,5 @@
 /*
- Controller v1.0.1
+ introspect.js v1.0.0
  (c) 2014 Kyle Shay. http://kyleshay.info
  License: MIT
 */
