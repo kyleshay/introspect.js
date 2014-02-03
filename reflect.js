@@ -1,10 +1,10 @@
 var Reflect = function(file) {
 	var request = new XMLHttpRequest
-	request.open('GET', 'adder.js', true)
+	request.open('GET', file, true)
 	request.send()
 
 	request.onload = function() {
-		return inject(this.response)
+		return inject(this.response.toString())
 	}
 
 	function inject(file) {
