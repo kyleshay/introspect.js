@@ -3,6 +3,12 @@ var adder = (function() {
 	function doAdd(num1, num2) {
 		return num1 + num2;
 	}
+	
+	var foo = function() {
+		return "foo";
+	}, bar = function() {
+		return "bar";
+	}
 
 	var Public;
 

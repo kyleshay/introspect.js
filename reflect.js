@@ -11,14 +11,14 @@ var Reflect = function(file) {
 		file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
 
 		// parse out the function signature
-		var privs = file.match(/function\s*?(\w.*?)\(/g);
+		var privs = file.match(/((var )?\s*?(\w.*?)=\s*?)?function(\s*?(\w.*?))?\(/g);
 
 		var replace = "return Public;";
 		var instance = eval("new (" + file.replace(replace, ''
 			+ "Public._initPrivs = function(funcs){"
 			+ "Public._privates = {};" // init _privates property
 			+ "for(var i=funcs.length;i--;){" // loop the funcs found from `privs`
-			+ "var fn=funcs[i].replace(/(function\\s+)/,'').replace('(','');" // get func name
+			+ "var fn=funcs[i].replace(/(=?\\s*?function\\s*?)/,'').replace('(','').replace('var ', '');" // get func name
 			+ "try{Public._privates[fn] = eval(fn);}catch(e){" // test to see if func is defined
 			+ "if(e.name=='ReferenceError'){continue;}else{throw e;}}}}\n" // if not, ignore
 			+ replace)
