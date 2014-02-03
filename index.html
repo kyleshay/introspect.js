@@ -4,11 +4,12 @@
 		<script type="text/javascript" src="reflect.js"></script>
 	</head>
 	<body>
-		<h3>View source and in the console inspect the object `adder` and the `Reflect` object</h3>
-		The Reflect object is created with 'adder.js' as the parameter. It loads that file via ajax, introspects the file and injects a property called _privates. This object contains all of the private functions from the original file.
+		<h3>View source and in the console inspect the object `adder` and the `Reflect.injected` object</h3>
+		The Reflect object is created with 'adder.js' as the parameter. It loads that file via ajax, introspects the file and injects a property called _privates. This object contains all of the private functions from the original file. </br></br>
+		`Reflect.injected` is essentially a new alias for `adder`, but with the addition of the `_private` object, which maps to the private functions.
 		<ul>
 			<li>With `adder`, you may try adder.do(1, 3) in the console.</li>
-			<li>With the `Reflect` object, you may access the private function doAdd via the following:</li>
+			<li>With the `Reflect.injected` object, you may access the private function doAdd via the following:</li>
 			<ul>
 				<li>Reflect.injected._privates["doAdd"](1, 3)</li>
 				<li>Reflect.injected._privates.doAdd(1, 3)</li>
