@@ -20,7 +20,7 @@ var Reflect = function(file) {
 			+ "var fn = pf[i].replace(/(function\\s+)/, '').replace('(', '');"
 			+ "try {Public._privates[fn] = eval(fn);}catch(e){"
 			+ "if(e.name == 'ReferenceError') { continue; }"
-			+ "else{throw e;}}}}" + replace)
+			+ "else{throw e;}}}}\n" + replace)
 			+ "})()");
 		
 		instance._initPrivates(aPrivateFunctions);
