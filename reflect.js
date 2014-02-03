@@ -11,7 +11,7 @@ var Reflect = function(file) {
 		file = file.substring(file.indexOf('function'), file.lastIndexOf('}'));
 
 		// parse out the function signature
-		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
+		var privs = file.match(/function\s*?(\w.*?)\(/g);
 
 		var replace = "return Public;";
 		var instance = eval("new (" + file.replace(replace, "Public._privates = {};"
@@ -23,7 +23,7 @@ var Reflect = function(file) {
 			+ "else{throw e;}}}}\n" + replace)
 			+ "})()");
 		
-		instance._initPrivates(aPrivateFunctions);
+		instance._initPrivates(privs);
 
 		// delete the initiation functions
 		delete instance._initPrivates;
