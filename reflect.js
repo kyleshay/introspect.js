@@ -15,7 +15,7 @@ var Reflect = function(file) {
 		var aPrivateFunctions = file.match(/function\s*?(\w.*?)\(/g);
 		console.log('something? ', aPrivateFunctions)
 
-		var funcString = "new (" + file.replace('\n', "this._privates = {};"
+		var funcString = "new " + file.replace('\n', "this._privates = {};"
 			+ "this._initPrivates = function(pf){this._privates = {};"
 			+ "for (var i = 0, ii = pf.length; i < ii; i++){"
 			+ "var fn = pf[i].replace(/(function\\s+)/, '').replace('(', '');"
