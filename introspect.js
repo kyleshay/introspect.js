@@ -1,7 +1,6 @@
 /*
  introspect.js v1.0.0
- (c) 2014 Kyle Shay. http://kyleshay.info
- License: MIT
+ Kyle Shay. http://kyleshay.github.io
 */
 var introspect = function (file) {
     'use strict';
